@@ -4,6 +4,12 @@ import { Input } from "@/components/ui/input";
 import { Search, UserCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { LoginLink, RegisterLink } from "@kinde-oss/kinde-auth-nextjs/server";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 type LandingPageNavProps = {};
 
@@ -24,10 +30,29 @@ const LandingPageNav: React.FC<LandingPageNavProps> = () => {
           />
         </div>
         <div>
-          <UserCircle
-            className="md:hidden text-gray-500 cursor-pointer"
-            size={24}
-          />
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <UserCircle
+                className="md:hidden text-gray-500 cursor-pointer"
+                size={24}
+              />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="flex flex-col items-end mr-4">
+              <DropdownMenuItem asChild>
+                <LoginLink>
+                  <Button className="rounded-full" variant="outline">
+                    Log In
+                  </Button>
+                </LoginLink>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <RegisterLink>
+                  <Button className="rounded-full">Become a creator</Button>
+                </RegisterLink>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+
           <div className="gap-x-4 hidden md:flex">
             <LoginLink>
               <Button className="rounded-full" variant="outline">
