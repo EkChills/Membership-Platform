@@ -45,7 +45,8 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
-  Role          UserRole  @default(CONSUMER)
+  password      String?
+  Role UserRole @default(CONSUMER)
 }
 
 enum UserRole {

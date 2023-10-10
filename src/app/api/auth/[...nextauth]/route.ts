@@ -5,6 +5,7 @@ import { PrismaAdapter } from "@auth/prisma-adapter"
 import { PrismaClient, User } from "@prisma/client"
 import { Adapter } from 'next-auth/adapters';
 import { baseUrl } from "@/lib/baseUrl";
+import { Role } from "@/lib/types/next-auth";
 
 
 const prisma = new PrismaClient()
@@ -25,7 +26,9 @@ export const authOptions:AuthOptions = {
         password:{label:"Password", type:"password"}
       },
       async authorize(credentials){
-        const res = await fetch(`${baseUrl}/api/auth/login`, {
+        console.log(credentials?.email, credentials?.password);
+        
+        const res = await fetch(`${baseUrl}/api/login`, {
           method:"POST",
           body:JSON.stringify(
             {
@@ -50,7 +53,7 @@ export const authOptions:AuthOptions = {
   },
   callbacks: {
     async jwt({ token, account, user, trigger, session }) {
-      console.log(session);
+      console.log(token);
       
       if(trigger === 'update'){
         return {...token, ...session.user}
@@ -70,6 +73,7 @@ export const authOptions:AuthOptions = {
       
       session.accessToken = token.accessToken as string
       session.userId  = token.id as string
+      session.role = token.Role as Role
       session.user.image = token.image as string
       if(token.email) {
         
@@ -79,10 +83,12 @@ export const authOptions:AuthOptions = {
     }
   },
   pages:{
-    signIn:'/login',
-    newUser:'/register',
+    // signIn:'/login',
+    // newUser:'/register',
   },
 }
 
 const handler =  NextAuth(authOptions)
+
+export {handler as GET, handler as POST}
 
