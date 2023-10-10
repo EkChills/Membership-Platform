@@ -1,17 +1,14 @@
-import React from "react";
-import { RegisterLink, LoginLink, getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import React from 'react'
+import { authOptions } from './api/auth/[...nextauth]/route'
+import {getServerSession} from 'next-auth'
 
-export default function page() {
-  const {getUser} = getKindeServerSession()
-  const user = getUser()
+export default async function page() {
+  const session = await getServerSession(authOptions)
   return (
     <div>
       <pre>
-        {user && JSON.stringify(user)}
+        {JSON.stringify(session)}
       </pre>
-      <LoginLink>Sign in</LoginLink>
-
-      <RegisterLink>Sign up</RegisterLink>
     </div>
-  );
+  )
 }
