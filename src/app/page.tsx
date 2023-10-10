@@ -1,7 +1,7 @@
 import React from "react";
-import {
-  RegisterLink,
-} from "@kinde-oss/kinde-auth-nextjs/server";
+// import {
+//   RegisterLink,
+// } from "@kinde-oss/kinde-auth-nextjs/server";
 import LandingPageNav from "@/components/landing page/LandingPageNav";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
@@ -19,9 +19,7 @@ export default function page() {
             Empower Creators and Support Their Passion with Dasha
           </p>
         </div>
-        <RegisterLink>
           <Button className="rounded-full text-base">Get Started</Button>
-        </RegisterLink>
       </div>
       {/* <Image src="/assets/banner.png" width={100} alt="banner image" height={100}/> */}
       <img src="/assets/patreonweb.png" alt="" className="w-full mt-16" />

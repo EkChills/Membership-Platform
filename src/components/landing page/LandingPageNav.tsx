@@ -3,7 +3,6 @@ import React from "react";
 import { Input } from "@/components/ui/input";
 import { Search, UserCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { LoginLink, RegisterLink } from "@kinde-oss/kinde-auth-nextjs/server";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -39,29 +38,21 @@ const LandingPageNav: React.FC<LandingPageNavProps> = () => {
             </DropdownMenuTrigger>
             <DropdownMenuContent className="flex flex-col items-end mr-4">
               <DropdownMenuItem asChild>
-                <LoginLink>
                   <Button className="rounded-full" variant="outline">
                     Log In
                   </Button>
-                </LoginLink>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <RegisterLink>
                   <Button className="rounded-full">Become a creator</Button>
-                </RegisterLink>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
 
           <div className="gap-x-4 hidden md:flex">
-            <LoginLink>
               <Button className="rounded-full" variant="outline">
                 Log In
               </Button>
-            </LoginLink>
-            <RegisterLink>
               <Button className="rounded-full">Become a creator</Button>
-            </RegisterLink>
           </div>
         </div>
       </div>
