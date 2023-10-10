@@ -5,8 +5,12 @@ import React from "react";
 import LandingPageNav from "@/components/landing page/LandingPageNav";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import { getServerSession } from "next-auth";
+import { authOptions } from "./api/auth/[...nextauth]/route";
 
 export default function page() {
+
+  
   return (
     <>
       <LandingPageNav />
