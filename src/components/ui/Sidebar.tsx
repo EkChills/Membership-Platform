@@ -8,7 +8,7 @@ type SidebarProps = {};
 
 const Sidebar: React.FC<SidebarProps> = () => {
   return (
-    <nav className="pt-4 px-4 bg-white border-gray-100 border h-screen w-[20rem]">
+    <nav className="pt-4 px-4 bg-white border-gray-100 border h-screen w-[20rem] fixed">
       <Image src="/assets/patreon.svg" alt="logo" width={40} height={40} />
       <div className="mt-6 space-y-2">
         <Link
@@ -48,7 +48,7 @@ const Sidebar: React.FC<SidebarProps> = () => {
           <Settings size={20} /> Settings
         </Link>
       </div>
-      <Button variant="outline" className="rounded-full mt-4 w-full">
+      <Button variant="outline" className="rounded-full mt-4 w-full text-base font-semibold">
         Create Post
       </Button>
       <div className="flex items-center gap-4 cursor-pointer">
