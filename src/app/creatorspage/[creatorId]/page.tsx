@@ -32,6 +32,7 @@ const CreatorsPage: React.FC<CreatorsPageProps> = () => {
           </TabsContent>
         </Tabs>
         {/* <div className="h-[100rem]"></div> */}
+        
       </div>
     </>
   );
