@@ -2,6 +2,7 @@ import PageDescriptionInput from '@/components/authpages/PageDescriptionInput'
 import React from 'react'
 
 export default function PageDescriptionCreator() {
+  
   return (
     <div className='flex w-full justify-center px-4'>
       <div className='w-full sm:max-w-md text-clip mx-auto text-center'>
