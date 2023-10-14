@@ -2,13 +2,15 @@ import Image from "next/image";
 import React from "react";
 import { Input } from "@/components/ui/input";
 import { Search, UserCircle } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 type LandingPageNavProps = {};
 
@@ -38,21 +40,37 @@ const LandingPageNav: React.FC<LandingPageNavProps> = () => {
             </DropdownMenuTrigger>
             <DropdownMenuContent className="flex flex-col items-end mr-4">
               <DropdownMenuItem asChild>
-                  <Button className="rounded-full" variant="outline">
-                    Log In
-                  </Button>
+                <Link
+                  className={cn(
+                    buttonVariants({ variant: "outline" }),
+                    "rounded-full"
+                  )}
+                  href={"/login"}
+                >
+                  Log In
+                </Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                  <Button className="rounded-full">Become a creator</Button>
+                <Link className={cn("rounded-full")} href={"/login"}>
+                  Become a Creator
+                </Link>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
 
           <div className="gap-x-4 hidden md:flex">
-              <Button className="rounded-full" variant="outline">
-                Log In
-              </Button>
-              <Button className="rounded-full">Become a creator</Button>
+            <Link
+              className={cn(
+                buttonVariants({ variant: "outline" }),
+                "rounded-full"
+              )}
+              href={"/login"}
+            >
+              Log In
+            </Link>
+            <Link className={cn(buttonVariants(),'rounded-full')} href={"/signupCreator"}>
+              Become a Creator
+            </Link>{" "}
           </div>
         </div>
       </div>

@@ -67,7 +67,7 @@ export default function LoginInputs({LoginFor, pushTo}:LoginInputProps) {
           {...register("password", {required:true})}
         />
       </div>
-      <Button>{isLoading ? <Loader2 className="w-6 h-6 animate-spin"/> : "Sign up"}</Button>
+      <Button>{isLoading ? <Loader2 className="w-6 h-6 animate-spin"/> : "Login"}</Button>
     </form>
   );
 }
