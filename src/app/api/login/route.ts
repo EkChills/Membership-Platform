@@ -1,11 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
-import { UserBody } from "../register/route";
+import { UserBody } from "../signup/route";
 import { db as prisma } from "@/lib/prismaClient";
 import bcrypt from 'bcrypt'
+import {headers} from 'next/headers'
 
+
+type LoginBody = Omit<UserBody, | 'fullName'> 
 export async function POST(req:NextRequest) {
+
+  
   try {
-    const body:UserBody = await req.json();
+    const body:LoginBody = await req.json();
     console.log(body);
     
   
@@ -15,7 +20,7 @@ export async function POST(req:NextRequest) {
   
     const user = await prisma.user.findUnique({
       where: {
-        email:body.email
+        email:body.email,
       }
     })
 
@@ -23,9 +28,9 @@ export async function POST(req:NextRequest) {
       return new NextResponse('user does not exist', {status:404})
     }
 
-    // if(!(await bcrypt.compare(body.password, user.password!))) {
-    //   return new NextResponse('incorrect password', {status:401})
-    // }
+    if(!(await bcrypt.compare(body.password, user.password!))) {
+      return new NextResponse('incorrect password', {status:401})
+    }
     
     
     return NextResponse.json({...user})
