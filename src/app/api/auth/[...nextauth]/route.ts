@@ -15,8 +15,8 @@ export const authOptions:AuthOptions = {
   adapter:PrismaAdapter!(prisma) as Adapter,
   providers:[
     GoogleProvider({
-      clientId:process.env.GOOGLE_ID as string,
-      clientSecret:process.env.GOOGLE_SECRET as string
+      clientId:process.env.GOOGLE_CLIENT_ID as string,
+      clientSecret:process.env.GOOGLE_CLIENT_SECRET as string
     }),
     CredentialsProvider({
       id:"credentials",
@@ -53,7 +53,6 @@ export const authOptions:AuthOptions = {
   },
   callbacks: {
     async jwt({ token, account, user, trigger, session }) {
-      console.log(token);
       
       if(trigger === 'update'){
         return {...token, ...session.user}
@@ -79,12 +78,13 @@ export const authOptions:AuthOptions = {
         
         session.user.email = token.email as string
       }
+      
       return session
     }
   },
   pages:{
-    // signIn:'/login',
-    // newUser:'/register',
+    signIn:'/login',
+    newUser:'/auth-callback',
   },
 }
 

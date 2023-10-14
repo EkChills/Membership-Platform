@@ -2,16 +2,21 @@ import { NextRequest, NextResponse } from "next/server";
 import { db as prisma } from "@/lib/prismaClient";
 import bcrypt from 'bcrypt'
 
+
+
 export type UserBody = {
   email:string;
   password:string;
   fullName:string;
+  userType:"CREATOR" | "CONSUMER"
 }
 
 export async function POST(request:NextRequest) {
   try {
     
-    const {email, password,fullName}:UserBody = await request.json()
+    const {email, password,fullName, userType}:UserBody = await request.json()
+    console.log(email, password, fullName, userType);
+    
   
     if(!email ||!password) {
       return new NextResponse('one or more fields are missing', {status:400})
@@ -30,29 +35,15 @@ export async function POST(request:NextRequest) {
     const hashedPassword = await bcrypt.hash(password, 10)
     
     
-    const params = new URL(window.location.href).searchParams
     const user = await prisma.user.create({
       data:{
         email:email,
         password:hashedPassword,
         name:fullName,
-        Role:"CONSUMER",
+        Role:userType,
         image:`https://robohash.org/${fullName}.png`
       }
     })
-    if(params.get('user') === "consumer") {
-      const userCreator = await prisma.user.create({
-        data:{
-          email:email,
-          password:hashedPassword,
-          name:fullName,
-          Role:"CREATOR",
-          image:`https://robohash.org/${fullName}.png`
-        }
-      })
-
-      return NextResponse.json(userCreator)
-    }
 
     return NextResponse.json(user)
     

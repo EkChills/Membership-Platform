@@ -46,7 +46,8 @@ model User {
   accounts      Account[]
   sessions      Session[]
   password      String?
-  Role UserRole @default(CONSUMER)
+  Role          UserRole  @default(CONSUMER)
+  Page          Page?
 }
 
 enum UserRole {
@@ -60,4 +61,14 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+model Page {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  pageName  String
+  pageUrl   String?
+  userId    String @unique
+  user      User     @relation(fields: [userId], references: [id])
 }

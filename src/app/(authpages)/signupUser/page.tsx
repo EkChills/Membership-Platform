@@ -1,7 +1,8 @@
 
 import AuthPagesWrapper from '@/components/authpages/AuthPagesWrapper'
+import LoginGoogleButton from '@/components/authpages/LoginGoogleButton'
 import LoginHeader from '@/components/authpages/LoginHeader'
-import LoginInputs from '@/components/authpages/LoginInputs'
+import SignUpInputs from '@/components/authpages/SignupInputs'
 import AnimatePresenceWrapper from '@/components/framer-motion/AnimatePresenceWrapper'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -11,26 +12,24 @@ import { usePathname } from 'next/navigation'
 import React from 'react'
 
 
-export default function CreatorSignup() {
+export default function UserSignup() {
   return (
     <AnimatePresenceWrapper>
     <AuthPagesWrapper>
-      <div className='w-full sm:max-w-screen-sm mx-auto text-center'>
+      <div className='w-full sm:max-w-md mx-auto text-center'>
       <div className='mt-32'>
-        <LoginHeader mainText='Become a creator on Dasha' subText='Not a creator?' linkActionText='Sign up here instead' linkTo='/getstarteduser'  />
+        <LoginHeader mainText='Sign up for Dasha' subText='Are you a creator?' linkActionText='Sign up here' linkTo='/signupCreator'  />
       </div>
-        <Button aria-label='sign in button' className='flex justify-center items-center w-full mt-6 space-x-4' size="lg" variant="outline">
-          <Image width={24} height={24} alt='' src={'/assets/google-logo.svg'} />
-          <p className='font-semibold'>Sign up with google</p>
-        </Button>
+      <LoginGoogleButton buttonText='Sign up with google' origin='user-page' />
+
 
         <div className='flex items-center  w-full mt-6'>
           <div className='h-[1px] w-full bg-gray-500/50' />
           <span className='text-gray-500 text-sm antialiased w-full'>or sign up with email</span>
           <div className='h-[1px] w-full bg-gray-500/50' />
         </div>
-      <LoginInputs />
-      <p className='mt-6'>Already have an account? <Link href="/" className='text-blue-700 text-center'>Log in</Link></p>
+      <SignUpInputs SignUpFor={'CONSUMER'} pushTo='/login' />
+      <p className='mt-6'>Already have an account? <Link href="/login" className='text-blue-700 text-center'>Log in</Link></p>
       </div>
     </AuthPagesWrapper>
     </AnimatePresenceWrapper>
