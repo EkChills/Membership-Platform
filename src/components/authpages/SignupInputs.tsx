@@ -40,7 +40,9 @@ export default function SignUpInputs({SignUpFor, pushTo}:SignUpInputProps) {
       
     } catch (error) {
       console.log(error);
-      
+      toast({
+        title:"Something went wrong"
+      })
     } finally {
       setIsLoading(false)
     }
@@ -61,6 +63,7 @@ export default function SignUpInputs({SignUpFor, pushTo}:SignUpInputProps) {
       <div>
         <Input
           placeholder="Password"
+          type="password"
           className={buttonVariants({ variant: "outline" })}
           {...register("password", {required:true})}
         />
