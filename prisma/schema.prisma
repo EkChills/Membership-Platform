@@ -46,7 +46,11 @@ model User {
   accounts      Account[]
   sessions      Session[]
   password      String?
-  Role UserRole @default(CONSUMER)
+  Role          UserRole  @default(CONSUMER)
+  Page          Page?
+  socials Social[]
+  about About[]
+  membership Membership[]
 }
 
 enum UserRole {
@@ -61,3 +65,45 @@ model VerificationToken {
 
   @@unique([identifier, token])
 }
+
+model Page {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  pageName  String
+  pageUrl   String?
+  userId    String @unique
+  user      User     @relation(fields: [userId], references: [id])
+}
+
+model About {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  bio String
+  userId    String @unique
+  user User @relation(fields: [userId], references: [id])
+}
+
+model Social {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  platform String
+  linkUrl String
+  userId    String @unique
+  user User @relation(fields: [userId], references: [id])
+}
+
+model Membership {
+  id  String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  price String
+  description String
+  coverImageUrl String?
+  userId    String @unique
+  user User @relation(fields: [userId], references: [id])
+}
+
+

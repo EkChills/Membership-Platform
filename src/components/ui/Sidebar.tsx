@@ -8,7 +8,7 @@ type SidebarProps = {};
 
 const Sidebar: React.FC<SidebarProps> = () => {
   return (
-    <nav className="pt-4 px-4 bg-white border-gray-100 border h-screen w-[20rem] fixed">
+    <nav className="pt-4 px-4 bg-white border-gray-100 border h-screen w-[20rem] fixed flex flex-col pb-4">
       <Image src="/assets/patreon.svg" alt="logo" width={40} height={40} />
       <div className="mt-6 space-y-2">
         <Link
@@ -51,7 +51,7 @@ const Sidebar: React.FC<SidebarProps> = () => {
       <Button variant="outline" className="rounded-full mt-4 w-full text-base font-semibold">
         Create Post
       </Button>
-      <div className="flex items-center gap-4 cursor-pointer">
+      <div className="flex items-center gap-4 cursor-pointer mt-auto">
         <div className="h-10 w-10 bg-slate-500 rounded-full" />
         <div className="flex flex-col">
           <span className="text-base font-bold text-gray-800">Jane Doe</span>
