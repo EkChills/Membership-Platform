@@ -40,7 +40,8 @@ export default function LoginInputs({LoginFor, pushTo}:LoginInputProps) {
       if(signInCallback?.error) {
         toast({
           variant:"destructive",
-          title:signInCallback?.error
+          title:"wrong password",
+          description:"check password and try again"
         })
       }
     } catch(err) {
@@ -64,6 +65,7 @@ export default function LoginInputs({LoginFor, pushTo}:LoginInputProps) {
         <Input
           placeholder="Password"
           className={buttonVariants({ variant: "outline" })}
+          type="password"
           {...register("password", {required:true})}
         />
       </div>
